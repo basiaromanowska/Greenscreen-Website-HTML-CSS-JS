@@ -1,0 +1,41 @@
+canvas {
+  width: 500px;
+  heigth: 500px;
+  border: 1px solid #666666;
+  background-color: white;
+  align-items: center;
+
+  
+}
+
+h1 {
+  font: bold 40px Jazz LET ;
+
+}
+
+h4 {
+  font: 17px Jazz LET ;
+
+}
+
+body {
+  background-color: #b9acae;
+  text-align: center;
+}
+
+.fore {
+    margin: 120px;
+
+}
+
+.back {
+      margin: 20px;
+}
+
+.changeButton {
+  margin-left: 50px;
+}
+
+.clearButton {
+  margin-left: 0px;
+}
