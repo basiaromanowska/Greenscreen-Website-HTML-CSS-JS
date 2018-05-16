@@ -1,0 +1,63 @@
+<html >
+  <head>
+    <title> Green Screen Composite</title>
+  </head>
+
+  <body>
+
+    <script src="http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js" >
+</script>
+
+<h1>Change The Green Screen Photos</h1>
+    
+    <h4> Upload your basic green screen image and composite it with uploaded background photo. </h4>
+    <br>
+    
+<!-- create empty boxes-->
+<canvas id = "fgCan"> </canvas>
+<canvas id = "bgCan"> </canvas>
+<br> <br> 
+<!-- upload button for 1st image-->
+<h7 class = "fore">
+Basic image: 
+  <input 
+         type="file" 
+         multiple="false" 
+         accept="image/*" 
+         id="image1" 
+         onchange="fgupload()">
+    </h7>
+<!-- upload button for 2nd image-->
+<h7 class="back">
+Background: 
+  <input 
+         type="file" 
+         multiple="false" 
+         accept="image/*" 
+         id="image2" 
+         onchange="bgupload()" >
+</h7>
+    
+  <br> <br> 
+    
+    <!-- change background button-->
+<h7 class="changeButton">
+<input 
+       type="button" 
+       value="Change background" 
+       onclick="doGreenScreen()" >
+<span style="display:inline-block; width: 40px;"></span>
+    
+<br> <br>
+    
+  <!-- clear images-->
+  <h7 class="clearButton">
+<input 
+       type="button" 
+       value="Clear" 
+       onclick="clearCanvas()" >
+
+    
+    <br>
+  </body>
+</html>
