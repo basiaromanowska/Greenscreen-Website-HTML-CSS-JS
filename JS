@@ -1,0 +1,71 @@
+var firstImg = null;
+var can1;
+var secondImg = null;
+var can2;
+
+//open and drawTo in first canvas
+function fgupload() {
+  
+  var file = document.getElementById ("image1");
+  firstImg = new SimpleImage (file);
+  can1 = document.getElementById("fgCan");
+  firstImg.drawTo(can1);
+  
+}
+
+//open and drawTo in second canvas
+function bgupload() {
+  
+  var file = document.getElementById ("image2");
+  secondImg = new SimpleImage (file);
+  can2 = document.getElementById("bgCan");
+  secondImg.drawTo(can2);
+  
+}
+
+function changeBackground() {
+    // create a new image - dimensions of the foreground image - and returns the complete composition
+  var output = new SimpleImage (firstImg.getWidth(),firstImg.getHeight());
+  var greenThreshold = 240;
+  for (var pixel of firstImg.values()) {
+    var x = pixel.getX();
+    var y = pixel.getY();
+    
+    if (pixel.getGreen() > greenThreshold) {
+      //pixel is green -> use background img pixel
+      var bgPixel = secondImg.getPixel(x,y);
+      output.setPixel(x,y,bgPixel);
+    }
+    else {
+      //pixel is not green, use foreground img
+      output.setPixel(x,y,pixel);
+    }
+  }
+  return output;
+}
+
+function doGreenScreen() {
+  //check that files are loaded
+  if (firstImg == null  || ! firstImg.complete()) {
+    alert("Basic image is not loaded");
+  }
+  if (secondImg == null || ! secondImg.complete()) {
+    alert("Background image is not loaded");
+  }
+  // clear canvases
+  clearCanvas();
+  // call createComposite, which does green screen algorithm and returns a composite image
+  var finalImage = changeBackground();
+  finalImage.drawTo(can1);
+}
+
+
+function clearCanvas() {
+  doClear(can1);
+  doClear(can2);
+}
+
+function doClear(canvas) {
+  var context = canvas.getContext("2d");
+  context.clearRect(0,0,canvas.width,canvas.height);
+}
